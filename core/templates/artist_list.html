@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Artists{% endblock %}
+
+{% block content %}
+
+<h4>All Artists </h4>
+
+{% if artist_list %}
+<ul class="list-group">
+{% for artist in artist_list %}
+<li class="list-group-item">
+    <a class="text-reset" href="{{ artist.get_absolute_url }}">{{ artist.name}}</a>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>Sorry! There are no artist registered. </p>
+{% endif %}
+<p class="pt-2">
+    <a href="{% url 'core:home' %}" role="button" class="btn btn-secondary w-100">Cancel</a>
+  </p>
+{% endblock %}
