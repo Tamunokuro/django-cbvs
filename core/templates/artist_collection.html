@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}{{ artist.name }}{% endblock %}
+
+{% block content %}
+
+<form action="" method="post" enctype="multipart/form-data">
+    <!-- {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field.errors }}
+    {{ hidden_field }}
+    {% endfor %} -->
+
+    {% for field in form.visible_fields %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+
+    {% csrf_token %}
+    {{ form.management_form }}
+    {{ form.non_form_errors }}
+
+    <h3>Edit Album</h3>
+    {% for album_form in form.forms %}
+    <hr>
+    <h6>
+    {% if album_form.instance.id %}
+    <h6>Album Name: {{ album_form.instance.title|title }}</h6>
+    {% else %}
+    {% if form.forms|length > 1 %}
+    Add album
+    {% else %}
+    Add another album
+    {% endif %}
+    {% endif %}
+    </h6>
+    {% for hidden_field in album_form.hidden_fields %}
+        {{ hidden_field.errors }}
+      {% endfor %}
+      <table>
+        {{ album_form.as_table }}
+      </table>
+    {% endfor %}
+
+    <p>
+        <button type="submit" value="Update album" class="btn btn-primary w-100 mb-3">Update Album</button>
+        <a href="{{ artist.get_absolute_url  }}" role="button" class="btn btn-secondary w-100">Cancel</a>
+      </p>
+
+
+</form>
+
+{% endblock %}
