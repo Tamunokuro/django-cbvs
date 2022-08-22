@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block Title %}{{ album.name }}{% endblock %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<h4>{{ message }}</h4>
+{% endfor %}
+{% endif %}
+
+<h3>{{ album.name }} </h3>
+    <!-- <div class="d-flex d-flex-inline"><span class="pe-2">Artist name:</span> <h5>{{ artist.name|title }}</h5></div> -->
+    <hr>
+        {% for collection in album.collection_album.all %}
+        <div class="small">Album: {{ album.name }}</div>
+        <hr>
+        {% endfor %}
+    <p>
+        <a href="{% url 'core:album_detail' pk=album.pk %}" role="button" class="btn btn-primary w-100 mb-2">{{ album.name }}</a>
+        <a href="{% url 'core:album_list' %}" role="button" class="btn btn-secondary w-100">All Albums</a>
+    </p>
+
+{% endblock %}

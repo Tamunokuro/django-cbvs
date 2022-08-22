@@ -4,17 +4,17 @@
 {% block content %}
 
 <form action="" method="post" enctype="multipart/form-data">
-    <!-- {% for hidden_field in form.hidden_fields %}
+    {% for hidden_field in form.hidden_fields %}
     {{ hidden_field.errors }}
     {{ hidden_field }}
-    {% endfor %} -->
+    {% endfor %}
 
-    {% for field in form.visible_fields %}
+    <!-- {% for field in form.visible_fields %}
     <div class="fieldWrapper">
         {{ field.errors }}
         {{ field.label_tag }} {{ field }}
     </div>
-    {% endfor %}
+    {% endfor %} -->
 
     {% csrf_token %}
     {{ form.management_form }}
@@ -38,7 +38,7 @@
         {{ hidden_field.errors }}
       {% endfor %}
       <table>
-        {{ album_form.as_table }}
+        {{ album_form.as_p }}
       </table>
     {% endfor %}
 

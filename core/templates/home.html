@@ -3,7 +3,8 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <a class='btn btn-secondary w-100 mb-2' role="button" href="{% url 'core:create_artist' %}">Create Account</a>
+<a class='btn btn-secondary w-100 mb-2' role="button" href="{% url 'core:create_album' %}">Create Album</a>
 <a class='btn btn-secondary w-100 mb-2' role="button" href="{% url 'core:artist_list' %}">All Artists</a>
-
+<a class='btn btn-secondary w-100 mb-2' role="button" href="{% url 'core:album_list' %}">All Albums</a>
 
 {% endblock %}
