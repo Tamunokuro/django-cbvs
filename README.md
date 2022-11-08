@@ -7,7 +7,7 @@
 - Django
 
 ## Getting Started
-- Run `git clone git@github.com:Tamunokuro/DJANGO-QUIZAPP.git`
+- Run `git clone git@github.com:Tamunokuro/django-cbvs.git`
 
 ### Prerequisites
 - Python 3.10
