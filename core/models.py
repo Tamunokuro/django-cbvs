@@ -6,6 +6,10 @@ from django.urls import reverse
 # Create your models here.
 class Album(models.Model):
     name = models.CharField(null=False, blank=False, max_length=255)
+    created = models.TimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('name',)
 
 
     def __str__(self):
@@ -14,10 +18,12 @@ class Album(models.Model):
     def get_absolute_url(self):
         return reverse('core:album_detail', kwargs={'pk':self.pk})
 
+      
+
 class Artist(models.Model):
     name = models.CharField(null=False, blank=False, max_length=64)
     track = models.CharField(null=True, blank=True, max_length=255)
-    album = models.ForeignKey(Album, on_delete=models.CASCADE, null=True, blank=True, max_length=255)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, null=True, blank=True, max_length=255, related_name='collection_artist')
     created = models.TimeField(auto_now_add=True)
 
     def get_absolute_url(self):
@@ -42,8 +48,11 @@ class Collection(models.Model):
     slug = models.SlugField(max_length=255)
     track = models.CharField(null=True, blank=True, max_length=255)
     artist = models.ForeignKey(Artist, null=True, blank=True, on_delete=models.CASCADE, related_name='collection_artist')
-    album = models.ForeignKey(Album, null=True, blank=True, on_delete=models.SET_NULL, related_name='collection_album')
+    album = models.ForeignKey(Album, null=True, blank=True, on_delete=models.CASCADE, related_name='collection_album')
+    created = models.TimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ('created',)
 
 
     def __str__(self):

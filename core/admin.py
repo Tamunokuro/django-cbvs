@@ -11,7 +11,7 @@ class CollectionAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('track',), }
 
 class AlbumAdmin(admin.ModelAdmin):
-    list_display= ['name']
+    list_display= ['name', 'created',]
 
 
 admin.site.register(Artist, ArtistAdmin)

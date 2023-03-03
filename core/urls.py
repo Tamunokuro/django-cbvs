@@ -12,6 +12,7 @@ urlpatterns = [
     path('album/',views.AlbumCreateView.as_view(), name='create_album'),
     path('album-list/',views.AlbumListView.as_view(), name='album_list'),
     path('album-detail/<int:pk>', views.AlbumDetailView.as_view(), name='album_detail')
+    
 
 
 ]
